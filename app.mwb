@@ -1,0 +1,38 @@
+--Creamos nuestra BD y la ejecutamos
+CREATE DATABASE IF NOT EXISTS pwa_fitness;
+USE pwa_fitness;
+-- Creamos nuestras tablas que anteriormente se hicieron mencion en el diseño logico del
+--proyecto.
+CREATE TABLE Usuarios (
+    id_usuario INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(100) NOT NULL,
+    correo VARCHAR(100) UNIQUE NOT NULL,
+    contrasena VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Rutinas (
+    id_rutina INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    fecha DATE NOT NULL,
+    tipo_entrenamiento VARCHAR(50) NOT NULL,
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario) ON DELETE CASCADE
+);
+
+CREATE TABLE Ejercicios_Realizados (
+    id_ejercicio INT AUTO_INCREMENT PRIMARY KEY,
+    id_rutina INT NOT NULL,
+    nombre_ejercicio VARCHAR(100) NOT NULL,
+    series INT NOT NULL,
+    repeticiones INT NOT NULL,
+    peso_kg DECIMAL(5,2) NOT NULL,
+    FOREIGN KEY (id_rutina) REFERENCES Rutinas(id_rutina) ON DELETE CASCADE
+);
+
+CREATE TABLE Registros_Nutricionales (
+    id_nutricion INT AUTO_INCREMENT PRIMARY KEY,
+    id_usuario INT NOT NULL,
+    fecha DATE NOT NULL,
+    gramos_proteina DECIMAL(6,2) DEFAULT 0,
+    litros_agua DECIMAL(4,2) DEFAULT 0,
+    FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario) ON DELETE CASCADE
+);
