@@ -5,8 +5,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Train Companion</title>
     <link rel="stylesheet" href="css/main.css">
+    <link rel="manifest" href="manifest.json">
 </head>
 <body>
-    
+    <section id="resumen-rapido" class="cuadricula-metricas">
+            <div class="tarjeta-metrica">
+                <span class="icono">📅</span>
+                <h3>Rutinas</h3>
+                <p>12 rutinas</p>
+            </div>
+            <div class="tarjeta-metrica">
+                <span class="icono">🏋️</span>
+                <h3>Entrenamientos</h3>
+                <p>24 entrenamientos</p>
+            </div>
+            <div class="tarjeta-metrica">
+                <span class="icono">🔥</span>
+                <h3>Racha actual</h3>
+                <p>7 días</p>
+            </div>
+           
+        </section>
+
+        <section id="rutina-hoy">
+            <h2>Rutina de hoy</h2>
+            <ul class="lista-ejercicios">
+                <li class="item-ejercicio">
+                    <span class="icono-ejercicio">🧍‍♂️</span>
+                    <div class="detalle-ejercicio">
+                        <h4>Fondos</h4>
+                        <p>3 series x 8-10 repeticiones</p>
+                    </div>
+                    <span class="peso-ejercicio">80 kg</span>
+                    <span class="flecha-navegacion">></span>
+                </li>
+                <li class="item-ejercicio">
+                    <span class="icono-ejercicio">💺</span>
+                    <div class="detalle-ejercicio">
+                        <h4>Press inclinado con mancuerna</h4>
+                        <p>3 series y 8 repeticiones</p>
+                    </div>
+                    <span class="peso-ejercicio">22 kg</span>
+                    <span class="flecha-navegacion">></span>
+                </li>
+                </ul>
+            <button id="btn-iniciar-entrenamiento" class="btn-principal">▶ Iniciar entrenamiento</button>
+        </section>
 </body>
 </html>
