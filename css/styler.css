@@ -232,3 +232,97 @@
         padding: 3px 8px;
     }
 }
+
+/* ==========================================================================
+   MODAL — Nueva rutina
+   ========================================================================== */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(9, 10, 14, 0.72);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--espacio-md);
+    z-index: 200;
+}
+
+.modal-overlay[hidden] {
+    display: none;
+}
+
+.modal-tarjeta {
+    width: 100%;
+    max-width: 380px;
+    background: var(--color-superficie);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-lg);
+    padding: var(--espacio-lg);
+    box-shadow: var(--sombra-elevada);
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-md);
+}
+
+.modal-tarjeta h2 {
+    font-size: 1.1rem;
+}
+
+.modal-tarjeta form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espacio-md);
+}
+
+.campo-formulario {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.campo-formulario label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--color-texto-secundario);
+}
+
+.campo-formulario input {
+    width: 100%;
+    min-height: 46px;
+    padding: 0 var(--espacio-md);
+    background: var(--color-superficie-alta);
+    border: 1px solid var(--color-borde);
+    border-radius: var(--radio-sm);
+    color: var(--color-texto);
+    font-family: var(--fuente-cuerpo);
+    font-size: 0.95rem;
+}
+
+.campo-formulario input::placeholder {
+    color: var(--color-texto-secundario);
+    opacity: 0.7;
+}
+
+.campo-formulario input:focus-visible {
+    outline: 2px solid var(--color-acento);
+    outline-offset: 1px;
+    border-color: var(--color-acento);
+}
+
+.login-error {
+    background: rgba(255, 90, 60, 0.12);
+    border: 1px solid var(--color-alerta);
+    color: var(--color-alerta);
+    font-size: 0.8rem;
+    padding: var(--espacio-sm);
+    border-radius: var(--radio-sm);
+}
+
+.modal-acciones {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--espacio-sm);
+    flex-wrap: wrap;
+}

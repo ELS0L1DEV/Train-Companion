@@ -11,6 +11,7 @@ document.addEventListener("DOMContentLoaded", () => {
     inicializarBotonMenu();
     inicializarFormularioLogin();
     inicializarMostrarPassword();
+    inicializarNuevaRutina();
 });
 
 /* --------------------------------------------------------------------
@@ -163,4 +164,129 @@ function inicializarMostrarPassword() {
         boton.setAttribute("aria-pressed", String(!visible));
         boton.querySelector("span").textContent = visible ? "👁️" : "🙈";
     });
+}
+
+/* --------------------------------------------------------------------
+   Nueva rutina: abre un modal, valida el formulario, agrega la
+   tarjeta a la lista y guarda la rutina en localStorage para que
+   persista entre recargas (consistente con el enfoque sin conexión
+   del proyecto).
+   -------------------------------------------------------------------- */
+const CLAVE_RUTINAS_PERSONALIZADAS = "tc-rutinas-personalizadas";
+
+function inicializarNuevaRutina() {
+    const botonAbrir = document.getElementById("btn-nueva-rutina");
+    const modal = document.getElementById("modal-nueva-rutina");
+    const formulario = document.getElementById("form-nueva-rutina");
+    const botonCancelar = document.getElementById("btn-cancelar-rutina");
+    const contenedorLista = document.getElementById("lista-rutinas-contenedor");
+
+    if (!botonAbrir || !modal || !formulario || !contenedorLista) return;
+
+    const mensajeError = document.getElementById("rutina-error");
+    const campoTitulo = document.getElementById("rutina-titulo");
+    const campoEjercicios = document.getElementById("rutina-ejercicios");
+
+    function abrirModal() {
+        modal.hidden = false;
+        campoTitulo.focus();
+    }
+
+    function cerrarModal() {
+        modal.hidden = true;
+        formulario.reset();
+        if (mensajeError) mensajeError.hidden = true;
+    }
+
+    botonAbrir.addEventListener("click", abrirModal);
+    botonCancelar.addEventListener("click", cerrarModal);
+
+    modal.addEventListener("click", (evento) => {
+        if (evento.target === modal) cerrarModal();
+    });
+
+    document.addEventListener("keydown", (evento) => {
+        if (evento.key === "Escape" && !modal.hidden) cerrarModal();
+    });
+
+    formulario.addEventListener("submit", (evento) => {
+        evento.preventDefault();
+
+        const titulo = campoTitulo.value.trim();
+        const ejercicios = campoEjercicios.value.trim();
+
+        if (!titulo || !ejercicios) {
+            if (mensajeError) mensajeError.hidden = false;
+            return;
+        }
+
+        const rutina = { titulo, ejercicios };
+        agregarTarjetaRutina(contenedorLista, rutina);
+        guardarRutinaEnLocalStorage(rutina);
+        actualizarContadorRutinas();
+        cerrarModal();
+    });
+
+    cargarRutinasGuardadas(contenedorLista);
+}
+
+function agregarTarjetaRutina(contenedorLista, rutina) {
+    const li = document.createElement("li");
+    li.className = "tarjeta-rutina";
+
+    const iniciales = rutina.titulo
+        .split(/\s+/)
+        .filter(Boolean)
+        .slice(0, 2)
+        .map((palabra) => palabra[0].toUpperCase())
+        .join("") || "NR";
+
+    li.innerHTML = `
+        <div class="tarjeta-rutina__encabezado">
+            <span class="insignia-dia" aria-hidden="true">${iniciales}</span>
+            <div class="tarjeta-rutina__info">
+                <h3></h3>
+                <p></p>
+            </div>
+            <span class="etiqueta-estado">Nueva</span>
+        </div>
+        <p class="tarjeta-rutina__meta">Creada ahora</p>
+        <div class="tarjeta-rutina__acciones">
+            <button class="btn-principal btn-principal--compacto">Iniciar</button>
+            <button class="btn-texto">Ver detalle</button>
+        </div>
+    `;
+
+    li.querySelector(".tarjeta-rutina__info h3").textContent = rutina.titulo;
+    li.querySelector(".tarjeta-rutina__info p").textContent = `${rutina.ejercicios} ejercicios`;
+
+    contenedorLista.appendChild(li);
+}
+
+function guardarRutinaEnLocalStorage(rutina) {
+    const rutinasGuardadas = obtenerRutinasGuardadas();
+    rutinasGuardadas.push(rutina);
+    localStorage.setItem(CLAVE_RUTINAS_PERSONALIZADAS, JSON.stringify(rutinasGuardadas));
+}
+
+function obtenerRutinasGuardadas() {
+    try {
+        const datos = localStorage.getItem(CLAVE_RUTINAS_PERSONALIZADAS);
+        return datos ? JSON.parse(datos) : [];
+    } catch (error) {
+        console.error("No se pudieron leer las rutinas guardadas:", error);
+        return [];
+    }
+}
+
+function cargarRutinasGuardadas(contenedorLista) {
+    const rutinasGuardadas = obtenerRutinasGuardadas();
+    rutinasGuardadas.forEach((rutina) => agregarTarjetaRutina(contenedorLista, rutina));
+    if (rutinasGuardadas.length > 0) actualizarContadorRutinas();
+}
+
+function actualizarContadorRutinas() {
+    const total = document.querySelectorAll(".tarjeta-rutina").length;
+    const contador = document.querySelector("#rutinas-resumen .tarjeta-metrica strong");
+    if (contador) contador.textContent = total;
 }
