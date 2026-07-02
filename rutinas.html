@@ -12,6 +12,47 @@
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/rutinas.css">
     <link rel="manifest" href="manifest.json">
+    <style>
+        .campo-registro-personal {
+            margin-top: 0.75rem;
+            padding-top: 0.75rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.08);
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .campo-registro-personal label {
+            flex-basis: 100%;
+            font-size: 0.8rem;
+            opacity: 0.75;
+        }
+        .campo-registro-personal .input-registro {
+            flex: 1 1 auto;
+            min-width: 0;
+        }
+        .lista-registros {
+            list-style: none;
+            margin: 0.5rem 0 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+        .item-registro {
+            display: flex;
+            justify-content: space-between;
+            gap: 0.75rem;
+            font-size: 0.85rem;
+            padding: 0.35rem 0.5rem;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.04);
+        }
+        .item-registro__fecha {
+            opacity: 0.6;
+            white-space: nowrap;
+        }
+    </style>
 </head>
 <body>
     <a class="salto-contenido" href="#contenido-principal">Saltar al contenido principal</a>
@@ -76,9 +117,14 @@
                     </div>
                     <p class="tarjeta-rutina__meta">Último registro: hace 2 días</p>
                     <div class="tarjeta-rutina__acciones">
-                        <button class="btn-principal btn-principal--compacto">Iniciar</button>
                         <button class="btn-texto btn-ver-detalle">Ver detalle</button>
                     </div>
+                    <div class="campo-formulario campo-registro-personal">
+                        <label for="nota-lunes">Registro personal (peso y repeticiones)</label>
+                        <input type="text" id="nota-lunes" class="input-registro" placeholder="Ej. Press banca 82 kg × 8">
+                        <button type="button" class="btn-secundario btn-guardar-registro" data-rutina-id="lunes">Guardar</button>
+                    </div>
+                    <ul class="lista-registros" id="lista-registros-lunes" aria-live="polite"></ul>
                 </li>
 
                 <li class="tarjeta-rutina" data-rutina-id="martes">
@@ -92,12 +138,17 @@
                     </div>
                     <p class="tarjeta-rutina__meta">Último registro: hace 6 días</p>
                     <div class="tarjeta-rutina__acciones">
-                        <button class="btn-principal btn-principal--compacto">Iniciar</button>
                         <button class="btn-texto btn-ver-detalle">Ver detalle</button>
                     </div>
+                    <div class="campo-formulario campo-registro-personal">
+                        <label for="nota-martes">Registro personal (peso y repeticiones)</label>
+                        <input type="text" id="nota-martes" class="input-registro" placeholder="Ej. Remo 60 kg × 10">
+                        <button type="button" class="btn-secundario btn-guardar-registro" data-rutina-id="martes">Guardar</button>
+                    </div>
+                    <ul class="lista-registros" id="lista-registros-martes" aria-live="polite"></ul>
                 </li>
 
-                <li class="tarjeta-rutina tarjeta-rutina--pendiente">
+                <li class="tarjeta-rutina tarjeta-rutina--pendiente" data-rutina-id="miercoles">
                     <div class="tarjeta-rutina__encabezado">
                         <span class="insignia-dia" aria-hidden="true">MI</span>
                         <div class="tarjeta-rutina__info">
@@ -110,9 +161,15 @@
                     <div class="tarjeta-rutina__acciones">
                         <button class="btn-texto">Agregar ejercicios</button>
                     </div>
+                    <div class="campo-formulario campo-registro-personal">
+                        <label for="nota-miercoles">Registro personal (peso y repeticiones)</label>
+                        <input type="text" id="nota-miercoles" class="input-registro" placeholder="Ej. Sentadilla 90 kg × 8">
+                        <button type="button" class="btn-secundario btn-guardar-registro" data-rutina-id="miercoles">Guardar</button>
+                    </div>
+                    <ul class="lista-registros" id="lista-registros-miercoles" aria-live="polite"></ul>
                 </li>
 
-                <li class="tarjeta-rutina tarjeta-rutina--pendiente">
+                <li class="tarjeta-rutina tarjeta-rutina--pendiente" data-rutina-id="sabado">
                     <div class="tarjeta-rutina__encabezado">
                         <span class="insignia-dia" aria-hidden="true">SA</span>
                         <div class="tarjeta-rutina__info">
@@ -125,6 +182,12 @@
                     <div class="tarjeta-rutina__acciones">
                         <button class="btn-texto">Agregar ejercicios</button>
                     </div>
+                    <div class="campo-formulario campo-registro-personal">
+                        <label for="nota-sabado">Registro personal (peso y repeticiones)</label>
+                        <input type="text" id="nota-sabado" class="input-registro" placeholder="Ej. Peso muerto 100 kg × 5">
+                        <button type="button" class="btn-secundario btn-guardar-registro" data-rutina-id="sabado">Guardar</button>
+                    </div>
+                    <ul class="lista-registros" id="lista-registros-sabado" aria-live="polite"></ul>
                 </li>
             </ul>
         </section>
@@ -186,5 +249,93 @@
     </div>
 
     <script src="js/app.js"></script>
+    <script>
+        (function () {
+            const CLAVE_ALMACENAMIENTO = 'train-companion-registros';
+
+            function obtenerRegistros() {
+                try {
+                    return JSON.parse(localStorage.getItem(CLAVE_ALMACENAMIENTO)) || {};
+                } catch (error) {
+                    return {};
+                }
+            }
+
+            function guardarRegistros(registros) {
+                localStorage.setItem(CLAVE_ALMACENAMIENTO, JSON.stringify(registros));
+            }
+
+            function formatearFecha(fechaISO) {
+                const fecha = new Date(fechaISO);
+                return fecha.toLocaleDateString('es-ES', {
+                    day: '2-digit',
+                    month: 'short',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            }
+
+            function renderizarRegistros(rutinaId) {
+                const lista = document.getElementById(`lista-registros-${rutinaId}`);
+                if (!lista) return;
+
+                const registros = obtenerRegistros()[rutinaId] || [];
+                lista.innerHTML = '';
+
+                registros
+                    .slice()
+                    .reverse()
+                    .forEach((registro) => {
+                        const item = document.createElement('li');
+                        item.className = 'item-registro';
+                        item.innerHTML = `
+                            <span class="item-registro__texto">${registro.texto}</span>
+                            <span class="item-registro__fecha">${formatearFecha(registro.fecha)}</span>
+                        `;
+                        lista.appendChild(item);
+                    });
+            }
+
+            function guardarNota(rutinaId, input) {
+                const texto = input.value.trim();
+                if (!texto) {
+                    input.focus();
+                    return;
+                }
+
+                const registros = obtenerRegistros();
+                if (!registros[rutinaId]) {
+                    registros[rutinaId] = [];
+                }
+
+                registros[rutinaId].push({
+                    texto,
+                    fecha: new Date().toISOString()
+                });
+
+                guardarRegistros(registros);
+                input.value = '';
+                renderizarRegistros(rutinaId);
+            }
+
+            document.querySelectorAll('.btn-guardar-registro').forEach((boton) => {
+                const rutinaId = boton.dataset.rutinaId;
+                const input = document.getElementById(`nota-${rutinaId}`);
+
+                renderizarRegistros(rutinaId);
+
+                boton.addEventListener('click', () => guardarNota(rutinaId, input));
+
+                if (input) {
+                    input.addEventListener('keydown', (evento) => {
+                        if (evento.key === 'Enter') {
+                            evento.preventDefault();
+                            guardarNota(rutinaId, input);
+                        }
+                    });
+                }
+            });
+        })();
+    </script>
 </body>
 </html>
