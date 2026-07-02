@@ -145,7 +145,7 @@ function inicializarFormularioLogin() {
         if (mensajeError) mensajeError.hidden = true;
 
         // Aquí se conectará la petición real de autenticación al servidor.
-        window.location.href = "index.html";
+        window.location.href = "inicio.html";
     });
 }
 
