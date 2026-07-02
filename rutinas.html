@@ -100,7 +100,7 @@
         <section id="lista-rutinas" aria-labelledby="titulo-lista-rutinas">
             <div class="encabezado-seccion">
                 <h2 id="titulo-lista-rutinas">Rutinas guardadas</h2>
-                <button id="btn-nueva-rutina" class="btn-secundario">
+                <button id="btn-nueva-rutina" class="btn-principal btn-principal--compacto">
                     Nueva rutina
                 </button>
             </div>
@@ -226,6 +226,15 @@
                         required>
                 </div>
 
+                <div class="campo-formulario">
+                    <label for="rutina-nota">Nota inicial · peso y repeticiones (opcional)</label>
+                    <input
+                        type="text"
+                        id="rutina-nota"
+                        name="nota"
+                        placeholder="Ej. Press banca 80 kg × 8">
+                </div>
+
                 <p id="rutina-error" class="login-error" role="alert" hidden>
                     Completa el nombre y el número de ejercicios de la rutina.
                 </p>
@@ -249,93 +258,5 @@
     </div>
 
     <script src="js/app.js"></script>
-    <script>
-        (function () {
-            const CLAVE_ALMACENAMIENTO = 'train-companion-registros';
-
-            function obtenerRegistros() {
-                try {
-                    return JSON.parse(localStorage.getItem(CLAVE_ALMACENAMIENTO)) || {};
-                } catch (error) {
-                    return {};
-                }
-            }
-
-            function guardarRegistros(registros) {
-                localStorage.setItem(CLAVE_ALMACENAMIENTO, JSON.stringify(registros));
-            }
-
-            function formatearFecha(fechaISO) {
-                const fecha = new Date(fechaISO);
-                return fecha.toLocaleDateString('es-ES', {
-                    day: '2-digit',
-                    month: 'short',
-                    hour: '2-digit',
-                    minute: '2-digit'
-                });
-            }
-
-            function renderizarRegistros(rutinaId) {
-                const lista = document.getElementById(`lista-registros-${rutinaId}`);
-                if (!lista) return;
-
-                const registros = obtenerRegistros()[rutinaId] || [];
-                lista.innerHTML = '';
-
-                registros
-                    .slice()
-                    .reverse()
-                    .forEach((registro) => {
-                        const item = document.createElement('li');
-                        item.className = 'item-registro';
-                        item.innerHTML = `
-                            <span class="item-registro__texto">${registro.texto}</span>
-                            <span class="item-registro__fecha">${formatearFecha(registro.fecha)}</span>
-                        `;
-                        lista.appendChild(item);
-                    });
-            }
-
-            function guardarNota(rutinaId, input) {
-                const texto = input.value.trim();
-                if (!texto) {
-                    input.focus();
-                    return;
-                }
-
-                const registros = obtenerRegistros();
-                if (!registros[rutinaId]) {
-                    registros[rutinaId] = [];
-                }
-
-                registros[rutinaId].push({
-                    texto,
-                    fecha: new Date().toISOString()
-                });
-
-                guardarRegistros(registros);
-                input.value = '';
-                renderizarRegistros(rutinaId);
-            }
-
-            document.querySelectorAll('.btn-guardar-registro').forEach((boton) => {
-                const rutinaId = boton.dataset.rutinaId;
-                const input = document.getElementById(`nota-${rutinaId}`);
-
-                renderizarRegistros(rutinaId);
-
-                boton.addEventListener('click', () => guardarNota(rutinaId, input));
-
-                if (input) {
-                    input.addEventListener('keydown', (evento) => {
-                        if (evento.key === 'Enter') {
-                            evento.preventDefault();
-                            guardarNota(rutinaId, input);
-                        }
-                    });
-                }
-            });
-        })();
-    </script>
 </body>
 </html>

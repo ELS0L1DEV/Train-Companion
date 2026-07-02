@@ -1,8 +1,3 @@
-// ==========================================================================
-// TRAIN COMPANION — Lógica de interfaz (cliente)
-// Controles de accesibilidad, detección de conexión y navegación básica.
-// ==========================================================================
-
 document.addEventListener("DOMContentLoaded", () => {
     inicializarTextoGrande();
     inicializarLecturaVoz();
@@ -12,12 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
     inicializarFormularioLogin();
     inicializarMostrarPassword();
     inicializarNuevaRutina();
+    inicializarRegistrosPersonales();
 });
 
-/* --------------------------------------------------------------------
-   Texto grande: alterna una clase en <html> que aumenta el tamaño
-   base de fuente (ver :root.texto-grande en style.css).
-   -------------------------------------------------------------------- */
 function inicializarTextoGrande() {
     const boton = document.getElementById("btn-texto-grande");
     if (!boton) return;
@@ -34,11 +26,6 @@ function inicializarTextoGrande() {
     });
 }
 
-/* --------------------------------------------------------------------
-   Leer en voz alta: usa la Web Speech API para leer el contenido
-   principal de la página, útil para usuarios con fatiga visual
-   durante el entrenamiento.
-   -------------------------------------------------------------------- */
 function inicializarLecturaVoz() {
     const boton = document.getElementById("btn-leer-voz");
     if (!boton) return;
@@ -64,12 +51,6 @@ function inicializarLecturaVoz() {
         sintesis.speak(enunciado);
     });
 }
-
-/* --------------------------------------------------------------------
-   Estado de conexión: refleja si la app está operando sin conexión,
-   principio central del proyecto (almacenamiento local + sincronización
-   posterior con el servidor).
-   -------------------------------------------------------------------- */
 function inicializarEstadoConexion() {
     const chip = document.getElementById("estado-conexion");
     if (!chip) return;
@@ -88,11 +69,6 @@ function inicializarEstadoConexion() {
     actualizarEstado();
 }
 
-/* --------------------------------------------------------------------
-   Navegación inferior: marca el enlace activo al hacer clic
-   (comportamiento visual; el ruteo real se conectará con las vistas
-   de cada módulo en fases posteriores del desarrollo).
-   -------------------------------------------------------------------- */
 function inicializarNavegacion() {
     const enlaces = document.querySelectorAll("#navegacion-principal a");
 
@@ -108,10 +84,7 @@ function inicializarNavegacion() {
     });
 }
 
-/* --------------------------------------------------------------------
-   Botón de menú: reservado para abrir un panel lateral en versiones
-   futuras (ajustes rápidos, cambio de rutina activa, etc.).
-   -------------------------------------------------------------------- */
+
 function inicializarBotonMenu() {
     const boton = document.getElementById("btn-menu");
     if (!boton) return;
@@ -121,11 +94,7 @@ function inicializarBotonMenu() {
     });
 }
 
-/* --------------------------------------------------------------------
-   Formulario de login: validación básica y redirección al dashboard.
-   No hay backend conectado todavía; esto simula el flujo de acceso
-   para efectos de la entrega del proyecto.
-   -------------------------------------------------------------------- */
+
 function inicializarFormularioLogin() {
     const formulario = document.getElementById("form-login");
     if (!formulario) return;
@@ -150,9 +119,6 @@ function inicializarFormularioLogin() {
     });
 }
 
-/* --------------------------------------------------------------------
-   Mostrar/ocultar contraseña en el formulario de login.
-   -------------------------------------------------------------------- */
 function inicializarMostrarPassword() {
     const boton = document.getElementById("btn-mostrar-password");
     const campo = document.getElementById("login-password");
@@ -166,12 +132,6 @@ function inicializarMostrarPassword() {
     });
 }
 
-/* --------------------------------------------------------------------
-   Nueva rutina: abre un modal, valida el formulario, agrega la
-   tarjeta a la lista y guarda la rutina en localStorage para que
-   persista entre recargas (consistente con el enfoque sin conexión
-   del proyecto).
-   -------------------------------------------------------------------- */
 const CLAVE_RUTINAS_PERSONALIZADAS = "tc-rutinas-personalizadas";
 
 function inicializarNuevaRutina() {
@@ -186,6 +146,7 @@ function inicializarNuevaRutina() {
     const mensajeError = document.getElementById("rutina-error");
     const campoTitulo = document.getElementById("rutina-titulo");
     const campoEjercicios = document.getElementById("rutina-ejercicios");
+    const campoNota = document.getElementById("rutina-nota");
 
     function abrirModal() {
         modal.hidden = false;
@@ -214,15 +175,25 @@ function inicializarNuevaRutina() {
 
         const titulo = campoTitulo.value.trim();
         const ejercicios = campoEjercicios.value.trim();
+        const nota = campoNota ? campoNota.value.trim() : "";
 
         if (!titulo || !ejercicios) {
             if (mensajeError) mensajeError.hidden = false;
             return;
         }
 
-        const rutina = { titulo, ejercicios };
+        if (mensajeError) mensajeError.hidden = true;
+
+        const id = generarIdRutina(titulo);
+        const rutina = { titulo, ejercicios, id };
+
         agregarTarjetaRutina(contenedorLista, rutina);
         guardarRutinaEnLocalStorage(rutina);
+
+        if (nota) {
+            guardarRegistro(id, nota);
+        }
+
         actualizarContadorRutinas();
         cerrarModal();
     });
@@ -231,8 +202,11 @@ function inicializarNuevaRutina() {
 }
 
 function agregarTarjetaRutina(contenedorLista, rutina) {
+    const id = rutina.id || generarIdRutina(rutina.titulo);
+
     const li = document.createElement("li");
     li.className = "tarjeta-rutina";
+    li.dataset.rutinaId = id;
 
     const iniciales = rutina.titulo
         .split(/\s+/)
@@ -252,20 +226,45 @@ function agregarTarjetaRutina(contenedorLista, rutina) {
         </div>
         <p class="tarjeta-rutina__meta">Creada ahora</p>
         <div class="tarjeta-rutina__acciones">
-            <button class="btn-principal btn-principal--compacto">Iniciar</button>
             <button class="btn-texto">Ver detalle</button>
         </div>
+        <div class="campo-formulario campo-registro-personal">
+            <label for="nota-${id}">Registro personal (peso y repeticiones)</label>
+            <input type="text" id="nota-${id}" class="input-registro" placeholder="Ej. Press banca 82 kg × 8">
+            <button type="button" class="btn-secundario btn-guardar-registro" data-rutina-id="${id}">Guardar</button>
+        </div>
+        <ul class="lista-registros" id="lista-registros-${id}" aria-live="polite"></ul>
     `;
 
     li.querySelector(".tarjeta-rutina__info h3").textContent = rutina.titulo;
     li.querySelector(".tarjeta-rutina__info p").textContent = `${rutina.ejercicios} ejercicios`;
 
     contenedorLista.appendChild(li);
+    inicializarRegistrosPersonales(li);
+
+    return id;
+}
+
+function generarIdRutina(titulo) {
+    const base = titulo
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "") || "rutina";
+
+    let id = base;
+    let contador = 1;
+    while (document.querySelector(`[data-rutina-id="${id}"]`)) {
+        id = `${base}-${contador}`;
+        contador++;
+    }
+    return id;
 }
 
 function guardarRutinaEnLocalStorage(rutina) {
     const rutinasGuardadas = obtenerRutinasGuardadas();
-    rutinasGuardadas.push(rutina);
+    rutinasGuardadas.push({ titulo: rutina.titulo, ejercicios: rutina.ejercicios, id: rutina.id });
     localStorage.setItem(CLAVE_RUTINAS_PERSONALIZADAS, JSON.stringify(rutinasGuardadas));
 }
 
@@ -289,4 +288,105 @@ function actualizarContadorRutinas() {
     const total = document.querySelectorAll(".tarjeta-rutina").length;
     const contador = document.querySelector("#rutinas-resumen .tarjeta-metrica strong");
     if (contador) contador.textContent = total;
+}
+
+const CLAVE_REGISTROS_PERSONALES = "train-companion-registros";
+
+function inicializarRegistrosPersonales(raiz = document) {
+    raiz.querySelectorAll(".btn-guardar-registro").forEach((boton) => {
+        if (boton.dataset.registroListo) return;
+        boton.dataset.registroListo = "true";
+
+        const rutinaId = boton.dataset.rutinaId;
+        const input = document.getElementById(`nota-${rutinaId}`);
+
+        renderizarRegistros(rutinaId);
+
+        boton.addEventListener("click", () => guardarNotaDesdeInput(rutinaId, input));
+
+        if (input) {
+            input.addEventListener("keydown", (evento) => {
+                if (evento.key === "Enter") {
+                    evento.preventDefault();
+                    guardarNotaDesdeInput(rutinaId, input);
+                }
+            });
+        }
+    });
+}
+
+function obtenerRegistrosPersonales() {
+    try {
+        return JSON.parse(localStorage.getItem(CLAVE_REGISTROS_PERSONALES)) || {};
+    } catch (error) {
+        console.error("No se pudieron leer los registros personales:", error);
+        return {};
+    }
+}
+
+function guardarRegistrosPersonales(registros) {
+    localStorage.setItem(CLAVE_REGISTROS_PERSONALES, JSON.stringify(registros));
+}
+
+function formatearFechaRegistro(fechaISO) {
+    const fecha = new Date(fechaISO);
+    return fecha.toLocaleDateString("es-ES", {
+        day: "2-digit",
+        month: "short",
+        hour: "2-digit",
+        minute: "2-digit"
+    });
+}
+
+function renderizarRegistros(rutinaId) {
+    const lista = document.getElementById(`lista-registros-${rutinaId}`);
+    if (!lista) return;
+
+    const registros = obtenerRegistrosPersonales()[rutinaId] || [];
+    lista.innerHTML = "";
+
+    registros
+        .slice()
+        .reverse()
+        .forEach((registro) => {
+            const item = document.createElement("li");
+            item.className = "item-registro";
+            item.innerHTML = `
+                <span class="item-registro__texto"></span>
+                <span class="item-registro__fecha"></span>
+            `;
+            item.querySelector(".item-registro__texto").textContent = registro.texto;
+            item.querySelector(".item-registro__fecha").textContent = formatearFechaRegistro(registro.fecha);
+            lista.appendChild(item);
+        });
+}
+
+function guardarRegistro(rutinaId, texto) {
+    if (!texto) return;
+
+    const registros = obtenerRegistrosPersonales();
+    if (!registros[rutinaId]) {
+        registros[rutinaId] = [];
+    }
+
+    registros[rutinaId].push({
+        texto,
+        fecha: new Date().toISOString()
+    });
+
+    guardarRegistrosPersonales(registros);
+    renderizarRegistros(rutinaId);
+}
+
+function guardarNotaDesdeInput(rutinaId, input) {
+    if (!input) return;
+    const texto = input.value.trim();
+
+    if (!texto) {
+        input.focus();
+        return;
+    }
+
+    guardarRegistro(rutinaId, texto);
+    input.value = "";
 }
