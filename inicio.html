@@ -11,6 +11,42 @@
     <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="manifest" href="manifest.json">
+    <style>
+        .tarjeta-bienvenida {
+            background: linear-gradient(135deg, rgba(213, 255, 63, 0.12), rgba(213, 255, 63, 0.02));
+            border: 1px solid rgba(213, 255, 63, 0.25);
+            border-radius: 16px;
+            padding: 1.25rem;
+            margin-bottom: 1.5rem;
+        }
+        .tarjeta-bienvenida h2 {
+            margin: 0.5rem 0 0.5rem;
+        }
+        .tarjeta-bienvenida p {
+            margin: 0;
+            opacity: 0.85;
+            line-height: 1.5;
+        }
+        .nota-suplementos {
+            font-size: 0.85rem;
+            opacity: 0.7;
+            margin-top: 0.75rem;
+            line-height: 1.5;
+        }
+        .seccion-cta {
+            text-align: center;
+            padding: 1.5rem 1rem;
+            margin: 1.5rem 0;
+        }
+        .seccion-cta p {
+            margin: 0 0 1rem;
+            opacity: 0.85;
+        }
+        .item-ejercicio a.peso-ejercicio {
+            text-decoration: none;
+            color: inherit;
+        }
+    </style>
 </head>
 <body>
     <a class="salto-contenido" href="#contenido-principal">Saltar al contenido principal</a>
@@ -44,82 +80,153 @@
     </span>
 
     <main id="contenido-principal">
-        <section id="resumen-rapido" class="cuadricula-metricas" aria-label="Resumen de actividad">
-            <div class="tarjeta-metrica">
-                <span class="icono" aria-hidden="true">📅</span>
-                <h3>Rutinas</h3>
-                <p><strong>12</strong> rutinas</p>
+        <section id="bienvenida" class="tarjeta-bienvenida" aria-labelledby="titulo-bienvenida">
+            <span class="etiqueta-seccion">Bienvenido a la familia</span>
+            <h2 id="titulo-bienvenida">Hola Logan, qué bien que estás aquí 💪</h2>
+            <p>
+                Empezar a entrenar es una de las mejores decisiones que puedes tomar, y no tienes que hacerlo
+                perfecto desde el día uno. Aquí no hay comparaciones ni prisas: solo tú, tu progreso y una
+                comunidad que entiende por lo que estás pasando. Vamos paso a paso, juntos.
+            </p>
+        </section>
+
+        <section id="tips-motivacionales" aria-labelledby="titulo-tips">
+            <div class="encabezado-seccion">
+                <h2 id="titulo-tips">Para que te sientas en casa</h2>
+                <span class="etiqueta-seccion">Tips para empezar</span>
             </div>
-            <div class="tarjeta-metrica">
-                <span class="icono" aria-hidden="true">🏋️</span>
-                <h3>Entrenamientos</h3>
-                <p><strong>24</strong> sesiones</p>
-            </div>
-            <div class="tarjeta-metrica tarjeta-metrica--acento">
-                <span class="icono" aria-hidden="true">🔥</span>
-                <h3>Racha actual</h3>
-                <p><strong>7</strong> días</p>
-            </div>
-            <div class="tarjeta-metrica">
-                <span class="icono" aria-hidden="true">⚡</span>
-                <h3>Calorías esta semana</h3>
-                <p><strong>2,450</strong> kcal</p>
+
+            <div class="cuadricula-metricas">
+                <div class="tarjeta-metrica">
+                    <span class="icono" aria-hidden="true">🌱</span>
+                    <h3>Todos empezamos en algún momento</h3>
+                    <p>La persona más fuerte del gimnasio también tuvo un primer día. Nadie te está juzgando.</p>
+                </div>
+                <div class="tarjeta-metrica">
+                    <span class="icono" aria-hidden="true">🐢</span>
+                    <h3>La constancia gana, no la intensidad</h3>
+                    <p>Es mejor entrenar poco pero seguido que darlo todo un día y desaparecer dos semanas.</p>
+                </div>
+                <div class="tarjeta-metrica tarjeta-metrica--acento">
+                    <span class="icono" aria-hidden="true">🎉</span>
+                    <h3>Celebra cada pequeño logro</h3>
+                    <p>Terminar la rutina, aprender un ejercicio nuevo o simplemente presentarte ya cuenta.</p>
+                </div>
+                <div class="tarjeta-metrica">
+                    <span class="icono" aria-hidden="true">🤝</span>
+                    <h3>Pide ayuda cuando la necesites</h3>
+                    <p>Preguntar cómo se usa una máquina no te hace menos, te hace más inteligente.</p>
+                </div>
+                <div class="tarjeta-metrica">
+                    <span class="icono" aria-hidden="true">📈</span>
+                    <h3>El progreso no siempre se ve derecho</h3>
+                    <p>Vas a tener días buenos y días difíciles. Ambos forman parte del mismo camino.</p>
+                </div>
+                <div class="tarjeta-metrica">
+                    <span class="icono" aria-hidden="true">🛌</span>
+                    <h3>Descansar también es entrenar</h3>
+                    <p>Tu cuerpo se recupera y se fortalece cuando duermes bien y le das días de descanso.</p>
+                </div>
             </div>
         </section>
 
-        <section id="rutina-hoy" aria-labelledby="titulo-rutina-hoy">
+        <section id="videos-recomendados" aria-labelledby="titulo-videos">
             <div class="encabezado-seccion">
-                <h2 id="titulo-rutina-hoy">Rutina de hoy</h2>
-                <span class="etiqueta-seccion">Empuje · Pecho / Hombro</span>
+                <h2 id="titulo-videos">Videos para arrancar con confianza</h2>
+                <span class="etiqueta-seccion">Selección para principiantes</span>
             </div>
 
             <ul class="lista-ejercicios">
                 <li class="item-ejercicio">
-                    <span class="icono-ejercicio" aria-hidden="true">🧍‍♂️</span>
+                    <span class="icono-ejercicio" aria-hidden="true">🎥</span>
                     <div class="detalle-ejercicio">
-                        <h4>Press de banca</h4>
-                        <p>4 series × 8–10 repeticiones</p>
+                        <h4>Perder el miedo a entrar al gimnasio</h4>
+                        <p>Consejos prácticos para sentirte cómodo tu primera semana</p>
                     </div>
-                    <span class="peso-ejercicio">80 kg</span>
+                    <a class="peso-ejercicio" href="https://www.youtube.com/results?search_query=perder+el+miedo+a+entrar+al+gimnasio+principiantes" target="_blank" rel="noopener noreferrer">Ver</a>
                     <span class="flecha-navegacion" aria-hidden="true">›</span>
                 </li>
                 <li class="item-ejercicio">
-                    <span class="icono-ejercicio" aria-hidden="true">💺</span>
+                    <span class="icono-ejercicio" aria-hidden="true">🎥</span>
                     <div class="detalle-ejercicio">
-                        <h4>Press inclinado</h4>
-                        <p>3 series × 10–12 repeticiones</p>
+                        <h4>Técnica básica: sentadilla, press y remo</h4>
+                        <p>Los tres movimientos que más vas a usar, explicados desde cero</p>
                     </div>
-                    <span class="peso-ejercicio">22 kg</span>
+                    <a class="peso-ejercicio" href="https://www.youtube.com/results?search_query=tecnica+basica+sentadilla+press+remo+principiantes" target="_blank" rel="noopener noreferrer">Ver</a>
                     <span class="flecha-navegacion" aria-hidden="true">›</span>
                 </li>
                 <li class="item-ejercicio">
-                    <span class="icono-ejercicio" aria-hidden="true">🧍‍♂️</span>
+                    <span class="icono-ejercicio" aria-hidden="true">🎥</span>
                     <div class="detalle-ejercicio">
-                        <h4>Press militar</h4>
-                        <p>3 series × 8–10 repeticiones</p>
+                        <h4>Cómo usar las máquinas del gimnasio</h4>
+                        <p>Guía visual para identificar y ajustar el equipo más común</p>
                     </div>
-                    <span class="peso-ejercicio">40 kg</span>
+                    <a class="peso-ejercicio" href="https://www.youtube.com/results?search_query=como+usar+las+maquinas+del+gimnasio+principiantes" target="_blank" rel="noopener noreferrer">Ver</a>
                     <span class="flecha-navegacion" aria-hidden="true">›</span>
                 </li>
                 <li class="item-ejercicio">
-                    <span class="icono-ejercicio" aria-hidden="true">🪜</span>
+                    <span class="icono-ejercicio" aria-hidden="true">🎥</span>
                     <div class="detalle-ejercicio">
-                        <h4>Fondos en paralelas</h4>
-                        <p>3 series × 12–15 repeticiones</p>
+                        <h4>Rutina full body para principiantes</h4>
+                        <p>Una primera rutina sencilla para conocer tu cuerpo y tu fuerza actual</p>
                     </div>
-                    <span class="peso-ejercicio">—</span>
-                    <span class="flecha-navegacion" aria-hidden="true">›</span>
-                </li>
-                <li class="item-ejercicio">
-                    <span class="icono-ejercicio" aria-hidden="true">🏋️</span>
-                    <div class="detalle-ejercicio">
-                        <h4>Elevaciones laterales</h4>
-                        <p>3 series × 12–15 repeticiones</p>
-                    </div>
-                    <span class="peso-ejercicio">14 kg</span>
+                    <a class="peso-ejercicio" href="https://www.youtube.com/results?search_query=rutina+full+body+principiantes+en+casa+o+gimnasio" target="_blank" rel="noopener noreferrer">Ver</a>
                     <span class="flecha-navegacion" aria-hidden="true">›</span>
                 </li>
             </ul>
+        </section>
+
+        <section id="suplementos" aria-labelledby="titulo-suplementos">
+            <div class="encabezado-seccion">
+                <h2 id="titulo-suplementos">Suplementos básicos para empezar</h2>
+                <span class="etiqueta-seccion">Guía para principiantes en México</span>
+            </div>
+
+            <ul class="lista-ejercicios">
+                <li class="item-ejercicio">
+                    <span class="icono-ejercicio" aria-hidden="true">🥤</span>
+                    <div class="detalle-ejercicio">
+                        <h4>Proteína whey</h4>
+                        <p>Ayuda a completar tu meta diaria de proteína y a recuperar el músculo después de entrenar</p>
+                    </div>
+                    <span class="peso-ejercicio">$500–$1,800 MXN</span>
+                </li>
+                <li class="item-ejercicio">
+                    <span class="icono-ejercicio" aria-hidden="true">💊</span>
+                    <div class="detalle-ejercicio">
+                        <h4>Creatina monohidratada</h4>
+                        <p>Uno de los suplementos más estudiados; apoya la fuerza y el rendimiento en el entrenamiento</p>
+                    </div>
+                    <span class="peso-ejercicio">$300–$700 MXN</span>
+                </li>
+                <li class="item-ejercicio">
+                    <span class="icono-ejercicio" aria-hidden="true">🌿</span>
+                    <div class="detalle-ejercicio">
+                        <h4>Multivitamínico</h4>
+                        <p>Ayuda a cubrir posibles huecos de vitaminas y minerales cuando empiezas a entrenar seguido</p>
+                    </div>
+                    <span class="peso-ejercicio">$400–$900 MXN</span>
+                </li>
+                <li class="item-ejercicio">
+                    <span class="icono-ejercicio" aria-hidden="true">🐟</span>
+                    <div class="detalle-ejercicio">
+                        <h4>Omega-3</h4>
+                        <p>Apoya la salud de tus articulaciones y tu recuperación general junto con el entrenamiento</p>
+                    </div>
+                    <span class="peso-ejercicio">$350–$800 MXN</span>
+                </li>
+            </ul>
+
+            <p class="nota-suplementos">
+                Los precios son un rango de referencia del mercado mexicano y pueden variar según marca y tienda.
+                Ningún suplemento sustituye una buena alimentación: te recomendamos consultar a un nutriólogo o
+                médico antes de empezar a tomar cualquier suplemento, sobre todo si tienes alguna condición de salud.
+            </p>
+        </section>
+
+        <section id="cta-comunidad" class="seccion-cta">
+            <p>No estás solo/a en este camino. Esta es tu comunidad. 💚</p>
+            <a href="rutinas.html" class="btn-principal">Ver mis rutinas</a>
         </section>
     </main>
 
