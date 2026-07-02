@@ -1,3 +1,10 @@
+/* ==========================================================================
+   TRAIN COMPANION — Sistema de diseño
+   Paleta: fondo casi-negro azulado, acento lima eléctrico (energía/gym),
+   acento naranja (calor/esfuerzo). Tipografía condensada para números
+   y titulares (carácter deportivo), Inter para lectura de datos.
+   ========================================================================== */
+
 :root {
     /* Color */
     --color-fondo: #12141A;
@@ -10,18 +17,18 @@
     --color-acento-oscuro: #9AB82C;
     --color-alerta: #FF5A3C;
     --color-exito: #4CD9A8;
- 
+
     /* Tipografía */
     --fuente-display: "Barlow Condensed", "Arial Narrow", sans-serif;
     --fuente-cuerpo: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
- 
+
     /* Espaciado */
     --espacio-xs: 0.4rem;
     --espacio-sm: 0.8rem;
     --espacio-md: 1.2rem;
     --espacio-lg: 1.8rem;
     --espacio-xl: 2.6rem;
- 
+
     /* Otros */
     --radio-sm: 10px;
     --radio-md: 16px;
@@ -30,22 +37,29 @@
     --altura-header: 64px;
     --sombra-elevada: 0 12px 28px rgba(0, 0, 0, 0.35);
 }
- 
+
 /* Modo texto grande, activado por JS */
 :root.texto-grande {
     font-size: 112%;
 }
- 
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
- 
+
 html {
     scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
 }
- 
+
+html,
+body {
+    max-width: 100%;
+    overflow-x: hidden;
+}
+
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
@@ -55,7 +69,7 @@ html {
         transition-duration: 0.001ms !important;
     }
 }
- 
+
 body {
     background-color: var(--color-fondo);
     color: var(--color-texto);
@@ -64,7 +78,7 @@ body {
     padding-bottom: calc(var(--altura-nav) + var(--espacio-md));
     min-height: 100vh;
 }
- 
+
 h1, h2, h3, h4 {
     font-family: var(--fuente-display);
     font-weight: 700;
@@ -72,14 +86,14 @@ h1, h2, h3, h4 {
     text-transform: uppercase;
     line-height: 1.1;
 }
- 
+
 /* Utilidad de accesibilidad: salto de contenido */
 .salto-contenido {
     position: absolute;
     left: -999px;
     top: auto;
 }
- 
+
 .salto-contenido:focus {
     position: fixed;
     left: var(--espacio-md);
@@ -91,7 +105,7 @@ h1, h2, h3, h4 {
     border-radius: var(--radio-sm);
     font-weight: 700;
 }
- 
+
 /* Foco visible consistente en toda la app */
 a:focus-visible,
 button:focus-visible {
@@ -99,11 +113,11 @@ button:focus-visible {
     outline-offset: 2px;
     border-radius: var(--radio-sm);
 }
- 
+
 /* ==========================================================================
    ENCABEZADO
    ========================================================================== */
- 
+
 .encabezado {
     display: flex;
     align-items: center;
@@ -114,12 +128,12 @@ button:focus-visible {
     top: 0;
     z-index: 50;
 }
- 
+
 .encabezado__titulo {
     flex: 1;
     min-width: 0;
 }
- 
+
 .encabezado__marca {
     display: block;
     font-family: var(--fuente-display);
@@ -128,7 +142,7 @@ button:focus-visible {
     letter-spacing: 0.18em;
     color: var(--color-acento);
 }
- 
+
 .encabezado h1 {
     font-size: 1.3rem;
     text-transform: none;
@@ -138,12 +152,12 @@ button:focus-visible {
     overflow: hidden;
     text-overflow: ellipsis;
 }
- 
+
 .controles-accesibilidad {
     display: flex;
     gap: var(--espacio-xs);
 }
- 
+
 .btn-icono {
     width: 40px;
     height: 40px;
@@ -160,27 +174,37 @@ button:focus-visible {
     cursor: pointer;
     transition: background 0.15s ease, transform 0.1s ease;
 }
- 
+
 .btn-icono:hover {
     background: var(--color-borde);
 }
- 
+
 .btn-icono:active {
     transform: scale(0.95);
 }
- 
+
 .btn-icono__superindice {
     font-size: 0.6rem;
     align-self: flex-start;
     margin-top: 2px;
 }
- 
+
 .btn-icono--avatar {
     background: var(--color-acento);
     color: var(--color-fondo);
     border-color: var(--color-acento);
 }
- 
+
+.btn-icono--texto {
+    width: auto;
+    padding: 0 var(--espacio-sm);
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+}
+
 /* Chip de estado de conexión (refleja el modo offline-first del sistema) */
 .chip-estado {
     display: flex;
@@ -195,7 +219,7 @@ button:focus-visible {
     font-size: 0.78rem;
     color: var(--color-texto-secundario);
 }
- 
+
 .chip-estado__punto {
     width: 8px;
     height: 8px;
@@ -204,22 +228,22 @@ button:focus-visible {
     box-shadow: 0 0 0 0 rgba(255, 90, 60, 0.6);
     animation: pulso-estado 2s infinite;
 }
- 
+
 .chip-estado--online .chip-estado__punto {
     background: var(--color-exito);
     box-shadow: 0 0 0 0 rgba(76, 217, 168, 0.6);
 }
- 
+
 @keyframes pulso-estado {
     0% { box-shadow: 0 0 0 0 rgba(255, 90, 60, 0.5); }
     70% { box-shadow: 0 0 0 6px rgba(255, 90, 60, 0); }
     100% { box-shadow: 0 0 0 0 rgba(255, 90, 60, 0); }
 }
- 
+
 /* ==========================================================================
    LAYOUT PRINCIPAL — mobile first
    ========================================================================== */
- 
+
 main {
     padding: 0 var(--espacio-md);
     display: flex;
@@ -228,7 +252,7 @@ main {
     max-width: 1100px;
     margin: 0 auto;
 }
- 
+
 .encabezado-seccion {
     display: flex;
     align-items: baseline;
@@ -237,33 +261,33 @@ main {
     margin-bottom: var(--espacio-sm);
     flex-wrap: wrap;
 }
- 
+
 .encabezado-seccion h2 {
     font-size: 1.15rem;
 }
- 
+
 .etiqueta-seccion {
     font-size: 0.78rem;
     color: var(--color-texto-secundario);
     font-family: var(--fuente-cuerpo);
 }
- 
+
 section > h2 {
     font-size: 1.15rem;
     margin-bottom: var(--espacio-sm);
 }
- 
+
 /* ==========================================================================
    TARJETAS DE MÉTRICA (cuadrícula flexible, 2 columnas en móvil)
    ========================================================================== */
- 
+
 .cuadricula-metricas {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: var(--espacio-sm);
     margin-top: var(--espacio-md);
 }
- 
+
 .tarjeta-metrica {
     background: var(--color-superficie);
     border: 1px solid var(--color-borde);
@@ -275,41 +299,41 @@ section > h2 {
     position: relative;
     overflow: hidden;
 }
- 
+
 .tarjeta-metrica .icono {
     font-size: 1.4rem;
 }
- 
+
 .tarjeta-metrica h3 {
     font-size: 0.72rem;
     color: var(--color-texto-secundario);
     text-transform: uppercase;
     letter-spacing: 0.06em;
 }
- 
+
 .tarjeta-metrica p {
     font-family: var(--fuente-display);
     font-size: 1.5rem;
     font-weight: 700;
 }
- 
+
 .tarjeta-metrica p strong {
     color: var(--color-texto);
 }
- 
+
 .tarjeta-metrica--acento {
     background: linear-gradient(145deg, var(--color-superficie) 0%, #23271c 100%);
     border-color: var(--color-acento-oscuro);
 }
- 
+
 .tarjeta-metrica--acento p strong {
     color: var(--color-acento);
 }
- 
+
 /* ==========================================================================
    RUTINA DE HOY
    ========================================================================== */
- 
+
 .lista-ejercicios {
     list-style: none;
     display: flex;
@@ -317,7 +341,7 @@ section > h2 {
     gap: var(--espacio-sm);
     margin-bottom: var(--espacio-md);
 }
- 
+
 .item-ejercicio {
     display: flex;
     align-items: center;
@@ -330,13 +354,13 @@ section > h2 {
     cursor: pointer;
     transition: background 0.15s ease, border-color 0.15s ease;
 }
- 
+
 .item-ejercicio:hover,
 .item-ejercicio:focus-visible {
     background: var(--color-superficie-alta);
     border-color: var(--color-acento-oscuro);
 }
- 
+
 .icono-ejercicio {
     font-size: 1.5rem;
     width: 44px;
@@ -348,12 +372,12 @@ section > h2 {
     border-radius: var(--radio-sm);
     flex-shrink: 0;
 }
- 
+
 .detalle-ejercicio {
     flex: 1;
     min-width: 0;
 }
- 
+
 .detalle-ejercicio h4 {
     font-size: 0.95rem;
     text-transform: none;
@@ -361,12 +385,12 @@ section > h2 {
     font-weight: 600;
     font-family: var(--fuente-cuerpo);
 }
- 
+
 .detalle-ejercicio p {
     font-size: 0.8rem;
     color: var(--color-texto-secundario);
 }
- 
+
 .peso-ejercicio {
     font-family: var(--fuente-display);
     font-weight: 700;
@@ -374,12 +398,12 @@ section > h2 {
     color: var(--color-acento);
     white-space: nowrap;
 }
- 
+
 .flecha-navegacion {
     color: var(--color-texto-secundario);
     font-size: 1.2rem;
 }
- 
+
 .btn-principal {
     width: 100%;
     min-height: 52px;
@@ -399,19 +423,19 @@ section > h2 {
     gap: var(--espacio-xs);
     transition: transform 0.1s ease, box-shadow 0.15s ease;
 }
- 
+
 .btn-principal:hover {
     box-shadow: var(--sombra-elevada);
 }
- 
+
 .btn-principal:active {
     transform: scale(0.98);
 }
- 
+
 /* ==========================================================================
    NAVEGACIÓN INFERIOR (estilo app nativa, zonas táctiles grandes)
    ========================================================================== */
- 
+
 #navegacion-principal {
     position: fixed;
     bottom: 0;
@@ -427,7 +451,7 @@ section > h2 {
     z-index: 100;
     overflow-x: auto;
 }
- 
+
 #navegacion-principal a {
     flex: 1;
     min-width: 44px;
@@ -443,30 +467,30 @@ section > h2 {
     font-weight: 600;
     padding: var(--espacio-xs) 2px;
 }
- 
+
 #navegacion-principal a .icono {
     font-size: 1.15rem;
 }
- 
+
 #navegacion-principal a.activo {
     color: var(--color-acento);
 }
- 
+
 /* ==========================================================================
    BREAKPOINTS — Tablet / Escritorio
    ========================================================================== */
- 
+
 @media (min-width: 640px) {
     .cuadricula-metricas {
         grid-template-columns: repeat(4, 1fr);
     }
 }
- 
+
 @media (min-width: 900px) {
     body {
         padding-bottom: var(--espacio-xl);
     }
- 
+
     #navegacion-principal {
         position: sticky;
         top: var(--altura-header);
@@ -475,19 +499,19 @@ section > h2 {
         gap: var(--espacio-lg);
         padding: var(--espacio-sm) var(--espacio-md);
     }
- 
+
     #navegacion-principal a {
         flex: 0 1 auto;
         flex-direction: row;
         font-size: 0.85rem;
         gap: var(--espacio-xs);
     }
- 
+
     main {
         padding: 0 var(--espacio-xl);
     }
 }
- 
+
 @media (min-width: 1200px) {
     .encabezado,
     main {
@@ -495,4 +519,84 @@ section > h2 {
         padding-right: var(--espacio-xl);
     }
 }
- 
+
+/* ==========================================================================
+   PANTALLAS MUY PEQUEÑAS (≤380px, p. ej. iPhone SE)
+   Ajustes finos para que nada se recorte ni se encime.
+   ========================================================================== */
+
+@media (max-width: 380px) {
+    :root {
+        --espacio-md: 1rem;
+        --espacio-lg: 1.4rem;
+    }
+
+    .encabezado {
+        gap: var(--espacio-xs);
+        padding: var(--espacio-sm) var(--espacio-sm) var(--espacio-xs);
+    }
+
+    .encabezado h1 {
+        font-size: 1.1rem;
+    }
+
+    .btn-icono {
+        width: 36px;
+        height: 36px;
+        min-width: 36px;
+        min-height: 36px;
+        font-size: 0.9rem;
+    }
+
+    .controles-accesibilidad {
+        gap: 4px;
+    }
+
+    .cuadricula-metricas {
+        gap: var(--espacio-xs);
+    }
+
+    .tarjeta-metrica {
+        padding: var(--espacio-sm);
+    }
+
+    .tarjeta-metrica p {
+        font-size: 1.25rem;
+    }
+
+    .item-ejercicio {
+        padding: var(--espacio-sm);
+        gap: 6px;
+    }
+
+    .icono-ejercicio {
+        width: 38px;
+        height: 38px;
+        font-size: 1.2rem;
+    }
+
+    .detalle-ejercicio h4 {
+        font-size: 0.85rem;
+    }
+
+    .detalle-ejercicio p {
+        font-size: 0.72rem;
+    }
+
+    .peso-ejercicio {
+        font-size: 0.85rem;
+    }
+
+    #navegacion-principal a {
+        font-size: 0.56rem;
+    }
+}
+
+/* Evita que los textos largos (nombres de ejercicios, rutinas) desborden
+   sus contenedores en cualquier tamaño de pantalla */
+.detalle-ejercicio h4,
+.tarjeta-rutina__info h3,
+.encabezado h1 {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}

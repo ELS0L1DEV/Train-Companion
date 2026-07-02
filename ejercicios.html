@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#12141A">
-    <meta name="description" content="Train Companion: directorio de ejercicios organizados por día.">
+    <meta name="description" content="Train Companion: directorio de ejercicios organizados por grupo muscular.">
     <title>Ejercicios · Train Companion</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,7 +18,7 @@
 
     <header class="encabezado">
         <a href="inicio.html" class="btn-icono" aria-label="Volver al inicio">
-            <span aria-hidden="true">←</span>
+            <span aria-hidden="true">&larr;</span>
         </a>
 
         <div class="encabezado__titulo">
@@ -27,14 +27,14 @@
         </div>
 
         <div class="controles-accesibilidad">
-            <button id="btn-leer-voz" class="btn-icono" aria-label="Leer contenido en voz alta">
-                <span aria-hidden="true">🔊</span>
+            <button id="btn-leer-voz" class="btn-icono btn-icono--texto" aria-label="Leer contenido en voz alta">
+                Voz
             </button>
             <button id="btn-texto-grande" class="btn-icono" aria-label="Aumentar tamaño de texto">
                 <span aria-hidden="true">A</span><span aria-hidden="true" class="btn-icono__superindice">A</span>
             </button>
-            <button id="btn-perfil" class="btn-icono btn-icono--avatar" aria-label="Ver perfil de usuario">
-                <span aria-hidden="true">👤</span>
+            <button id="btn-perfil" class="btn-icono btn-icono--avatar btn-icono--texto" aria-label="Ver perfil de usuario">
+                Perfil
             </button>
         </div>
     </header>
@@ -45,15 +45,14 @@
     </span>
 
     <main id="contenido-principal">
-        <section id="ejercicios-lunes" aria-labelledby="titulo-ejercicios-lunes">
+        <section id="ejercicios-pecho" aria-labelledby="titulo-ejercicios-pecho">
             <div class="encabezado-seccion">
-                <h2 id="titulo-ejercicios-lunes">Lunes · Pecho y tríceps</h2>
+                <h2 id="titulo-ejercicios-pecho">Pecho y tríceps</h2>
                 <span class="etiqueta-seccion">5 ejercicios</span>
             </div>
 
             <ul class="lista-ejercicios">
                 <li class="item-ejercicio">
-                    <span class="icono-ejercicio" aria-hidden="true">🏋️</span>
                     <div class="detalle-ejercicio">
                         <h4>Press inclinado con mancuerna</h4>
                         <p>4 series × 8–10 repeticiones</p>
@@ -62,7 +61,6 @@
                     <span class="flecha-navegacion" aria-hidden="true">›</span>
                 </li>
                 <li class="item-ejercicio">
-                    <span class="icono-ejercicio" aria-hidden="true">💪</span>
                     <div class="detalle-ejercicio">
                         <h4>Extensión de tríceps</h4>
                         <p>3 series × 12–15 repeticiones</p>
@@ -71,7 +69,6 @@
                     <span class="flecha-navegacion" aria-hidden="true">›</span>
                 </li>
                 <li class="item-ejercicio">
-                    <span class="icono-ejercicio" aria-hidden="true">💀</span>
                     <div class="detalle-ejercicio">
                         <h4>Rompecráneos</h4>
                         <p>3 series × 10–12 repeticiones</p>
@@ -80,7 +77,6 @@
                     <span class="flecha-navegacion" aria-hidden="true">›</span>
                 </li>
                 <li class="item-ejercicio">
-                    <span class="icono-ejercicio" aria-hidden="true">🪜</span>
                     <div class="detalle-ejercicio">
                         <h4>Fondos</h4>
                         <p>3 series × 12–15 repeticiones</p>
@@ -89,7 +85,6 @@
                     <span class="flecha-navegacion" aria-hidden="true">›</span>
                 </li>
                 <li class="item-ejercicio">
-                    <span class="icono-ejercicio" aria-hidden="true">🦋</span>
                     <div class="detalle-ejercicio">
                         <h4>Aperturas en máquina</h4>
                         <p>3 series × 12–15 repeticiones</p>
@@ -100,15 +95,14 @@
             </ul>
         </section>
 
-        <section id="ejercicios-martes" aria-labelledby="titulo-ejercicios-martes">
+        <section id="ejercicios-espalda" aria-labelledby="titulo-ejercicios-espalda">
             <div class="encabezado-seccion">
-                <h2 id="titulo-ejercicios-martes">Martes · Jalón (Pull)</h2>
+                <h2 id="titulo-ejercicios-espalda">Espalda y bíceps</h2>
                 <span class="etiqueta-seccion">6 ejercicios</span>
             </div>
 
             <ul class="lista-ejercicios">
                 <li class="item-ejercicio">
-                    <span class="icono-ejercicio" aria-hidden="true">🎯</span>
                     <div class="detalle-ejercicio">
                         <h4>Jalón unilateral en polea alta</h4>
                         <p>1 serie de calentamiento + 3 efectivas · mín. 8 reps</p>
@@ -117,7 +111,6 @@
                     <span class="flecha-navegacion" aria-hidden="true">›</span>
                 </li>
                 <li class="item-ejercicio">
-                    <span class="icono-ejercicio" aria-hidden="true">💪</span>
                     <div class="detalle-ejercicio">
                         <h4>Curl predicador</h4>
                         <p>1 serie de calentamiento + 3 efectivas · mín. 8 reps</p>
@@ -126,7 +119,6 @@
                     <span class="flecha-navegacion" aria-hidden="true">›</span>
                 </li>
                 <li class="item-ejercicio">
-                    <span class="icono-ejercicio" aria-hidden="true">🚣</span>
                     <div class="detalle-ejercicio">
                         <h4>Remo</h4>
                         <p>3 series efectivas · mín. 8 reps · pesado, al fallo</p>
@@ -135,7 +127,6 @@
                     <span class="flecha-navegacion" aria-hidden="true">›</span>
                 </li>
                 <li class="item-ejercicio">
-                    <span class="icono-ejercicio" aria-hidden="true">🔨</span>
                     <div class="detalle-ejercicio">
                         <h4>Curl martillo en soga</h4>
                         <p>3 series efectivas · al fallo</p>
@@ -144,7 +135,6 @@
                     <span class="flecha-navegacion" aria-hidden="true">›</span>
                 </li>
                 <li class="item-ejercicio">
-                    <span class="icono-ejercicio" aria-hidden="true">🦋</span>
                     <div class="detalle-ejercicio">
                         <h4>Aperturas en espalda</h4>
                         <p>3 series · al fallo, pesado</p>
@@ -153,7 +143,6 @@
                     <span class="flecha-navegacion" aria-hidden="true">›</span>
                 </li>
                 <li class="item-ejercicio">
-                    <span class="icono-ejercicio" aria-hidden="true">💪</span>
                     <div class="detalle-ejercicio">
                         <h4>Curl bayesian</h4>
                         <p>3 series de estímulo · peso medio</p>
@@ -164,20 +153,138 @@
             </ul>
         </section>
 
-        <section id="ejercicios-miercoles" aria-labelledby="titulo-ejercicios-miercoles">
+        <section id="ejercicios-piernas" aria-labelledby="titulo-ejercicios-piernas">
             <div class="encabezado-seccion">
-                <h2 id="titulo-ejercicios-miercoles">Miércoles</h2>
-                <span class="etiqueta-seccion etiqueta-seccion--pendiente">Pendiente de definir</span>
+                <h2 id="titulo-ejercicios-piernas">Piernas</h2>
+                <span class="etiqueta-seccion">5 ejercicios</span>
             </div>
-            <p class="aviso-pendiente">Aún no se han registrado ejercicios para este día.</p>
+
+            <ul class="lista-ejercicios">
+                <li class="item-ejercicio">
+                    <div class="detalle-ejercicio">
+                        <h4>Sentadilla</h4>
+                        <p>4 series × 8–10 repeticiones</p>
+                    </div>
+                    <span class="peso-ejercicio">—</span>
+                    <span class="flecha-navegacion" aria-hidden="true">›</span>
+                </li>
+                <li class="item-ejercicio">
+                    <div class="detalle-ejercicio">
+                        <h4>Prensa de piernas</h4>
+                        <p>3 series × 10–12 repeticiones</p>
+                    </div>
+                    <span class="peso-ejercicio">—</span>
+                    <span class="flecha-navegacion" aria-hidden="true">›</span>
+                </li>
+                <li class="item-ejercicio">
+                    <div class="detalle-ejercicio">
+                        <h4>Extensión de cuádriceps</h4>
+                        <p>3 series × 12–15 repeticiones</p>
+                    </div>
+                    <span class="peso-ejercicio">—</span>
+                    <span class="flecha-navegacion" aria-hidden="true">›</span>
+                </li>
+                <li class="item-ejercicio">
+                    <div class="detalle-ejercicio">
+                        <h4>Curl femoral</h4>
+                        <p>3 series × 12–15 repeticiones</p>
+                    </div>
+                    <span class="peso-ejercicio">—</span>
+                    <span class="flecha-navegacion" aria-hidden="true">›</span>
+                </li>
+                <li class="item-ejercicio">
+                    <div class="detalle-ejercicio">
+                        <h4>Elevación de talones (gemelo)</h4>
+                        <p>4 series × 15–20 repeticiones</p>
+                    </div>
+                    <span class="peso-ejercicio">—</span>
+                    <span class="flecha-navegacion" aria-hidden="true">›</span>
+                </li>
+            </ul>
         </section>
 
-        <section id="ejercicios-sabado" aria-labelledby="titulo-ejercicios-sabado">
+        <section id="ejercicios-abdomen" aria-labelledby="titulo-ejercicios-abdomen">
             <div class="encabezado-seccion">
-                <h2 id="titulo-ejercicios-sabado">Sábado</h2>
-                <span class="etiqueta-seccion etiqueta-seccion--pendiente">Pendiente de definir</span>
+                <h2 id="titulo-ejercicios-abdomen">Abdomen</h2>
+                <span class="etiqueta-seccion">4 ejercicios</span>
             </div>
-            <p class="aviso-pendiente">Aún no se han registrado ejercicios para este día.</p>
+
+            <ul class="lista-ejercicios">
+                <li class="item-ejercicio">
+                    <div class="detalle-ejercicio">
+                        <h4>Elevación de piernas colgado</h4>
+                        <p>3 series × 12–15 repeticiones</p>
+                    </div>
+                    <span class="peso-ejercicio">—</span>
+                    <span class="flecha-navegacion" aria-hidden="true">›</span>
+                </li>
+                <li class="item-ejercicio">
+                    <div class="detalle-ejercicio">
+                        <h4>Crunch en polea alta</h4>
+                        <p>3 series × 15–20 repeticiones</p>
+                    </div>
+                    <span class="peso-ejercicio">—</span>
+                    <span class="flecha-navegacion" aria-hidden="true">›</span>
+                </li>
+                <li class="item-ejercicio">
+                    <div class="detalle-ejercicio">
+                        <h4>Rueda abdominal</h4>
+                        <p>3 series × 8–12 repeticiones</p>
+                    </div>
+                    <span class="peso-ejercicio">—</span>
+                    <span class="flecha-navegacion" aria-hidden="true">›</span>
+                </li>
+                <li class="item-ejercicio">
+                    <div class="detalle-ejercicio">
+                        <h4>Giro ruso con peso</h4>
+                        <p>3 series × 16–20 repeticiones</p>
+                    </div>
+                    <span class="peso-ejercicio">—</span>
+                    <span class="flecha-navegacion" aria-hidden="true">›</span>
+                </li>
+            </ul>
+        </section>
+
+        <section id="ejercicios-isometricos" aria-labelledby="titulo-ejercicios-isometricos">
+            <div class="encabezado-seccion">
+                <h2 id="titulo-ejercicios-isometricos">Isométricos</h2>
+                <span class="etiqueta-seccion">4 ejercicios</span>
+            </div>
+
+            <ul class="lista-ejercicios">
+                <li class="item-ejercicio">
+                    <div class="detalle-ejercicio">
+                        <h4>Plancha abdominal</h4>
+                        <p>3 series × 40–60 segundos</p>
+                    </div>
+                    <span class="peso-ejercicio">—</span>
+                    <span class="flecha-navegacion" aria-hidden="true">›</span>
+                </li>
+                <li class="item-ejercicio">
+                    <div class="detalle-ejercicio">
+                        <h4>Sentadilla isométrica en pared</h4>
+                        <p>3 series × 30–45 segundos</p>
+                    </div>
+                    <span class="peso-ejercicio">—</span>
+                    <span class="flecha-navegacion" aria-hidden="true">›</span>
+                </li>
+                <li class="item-ejercicio">
+                    <div class="detalle-ejercicio">
+                        <h4>Puente de glúteo isométrico</h4>
+                        <p>3 series × 30–45 segundos</p>
+                    </div>
+                    <span class="peso-ejercicio">—</span>
+                    <span class="flecha-navegacion" aria-hidden="true">›</span>
+                </li>
+                <li class="item-ejercicio">
+                    <div class="detalle-ejercicio">
+                        <h4>Dead hang en barra</h4>
+                        <p>3 series × máximo tiempo posible</p>
+                    </div>
+                    <span class="peso-ejercicio">—</span>
+                    <span class="flecha-navegacion" aria-hidden="true">›</span>
+                </li>
+            </ul>
         </section>
 
         <section id="ejercicios-diarios" aria-labelledby="titulo-ejercicios-diarios">
@@ -188,7 +295,6 @@
 
             <ul class="lista-ejercicios">
                 <li class="item-ejercicio">
-                    <span class="icono-ejercicio" aria-hidden="true">🏃</span>
                     <div class="detalle-ejercicio">
                         <h4>Cardio en caminadora</h4>
                         <p>20 min · inclinación máxima · velocidad 3–4</p>
@@ -201,9 +307,9 @@
     </main>
 
     <nav id="navegacion-principal" aria-label="Navegación principal">
-        <a href="inicio.html"><span class="icono" aria-hidden="true">🏠</span> Inicio</a>
-        <a href="rutinas.html"><span class="icono" aria-hidden="true">📋</span> Rutinas</a>
-        <a href="ejercicios.html" class="activo" aria-current="page"><span class="icono" aria-hidden="true">🏋️</span> Ejercicios</a>
+        <a href="inicio.html">Inicio</a>
+        <a href="rutinas.html">Rutinas</a>
+        <a href="ejercicios.html" class="activo" aria-current="page">Ejercicios</a>
     </nav>
 
     <script src="js/app.js"></script>
