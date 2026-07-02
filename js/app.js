@@ -225,9 +225,6 @@ function agregarTarjetaRutina(contenedorLista, rutina) {
             <span class="etiqueta-estado">Nueva</span>
         </div>
         <p class="tarjeta-rutina__meta">Creada ahora</p>
-        <div class="tarjeta-rutina__acciones">
-            <button class="btn-texto">Ver detalle</button>
-        </div>
         <div class="campo-formulario campo-registro-personal">
             <label for="nota-${id}">Registro personal (peso y repeticiones)</label>
             <input type="text" id="nota-${id}" class="input-registro" placeholder="Ej. Press banca 82 kg × 8">
