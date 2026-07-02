@@ -1,3 +1,10 @@
+/* ==========================================================================
+   RUTINAS.HTML — Estilos específicos de la página de rutinas guardadas
+   Reutiliza las variables y componentes base definidos en style.css
+   (colores, tipografía, tarjetas de métrica, botón principal, etc.)
+   ========================================================================== */
+
+/* Botón secundario (acción "Nueva rutina" en el encabezado de sección) */
 .btn-secundario {
     display: flex;
     align-items: center;
@@ -20,7 +27,7 @@
     color: var(--color-fondo);
 }
 
-
+/* Botón de texto plano ("Ver detalle") */
 .btn-texto {
     background: none;
     border: none;
@@ -39,7 +46,7 @@
     background: var(--color-superficie-alta);
 }
 
-
+/* Variante compacta del botón principal, para usarse dentro de tarjetas */
 .btn-principal--compacto {
     width: auto;
     min-height: 40px;
@@ -48,7 +55,9 @@
     flex: 1;
 }
 
-
+/* ==========================================================================
+   LISTA DE TARJETAS DE RUTINA
+   ========================================================================== */
 
 .lista-rutinas {
     list-style: none;
@@ -93,6 +102,46 @@
     background: var(--color-superficie-alta);
     border-radius: var(--radio-sm);
     flex-shrink: 0;
+}
+
+/* Insignia de día (monograma de texto, sin emoji) */
+.insignia-dia {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-superficie-alta);
+    border-radius: var(--radio-sm);
+    flex-shrink: 0;
+    font-family: var(--fuente-display);
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.03em;
+    color: var(--color-texto-secundario);
+}
+
+.tarjeta-rutina--activa .insignia-dia {
+    background: var(--color-acento);
+    color: var(--color-fondo);
+}
+
+/* Tarjeta de rutina sin ejercicios registrados todavía */
+.tarjeta-rutina--pendiente {
+    border-style: dashed;
+    opacity: 0.85;
+}
+
+.tarjeta-rutina--pendiente .insignia-dia {
+    background: transparent;
+    border: 1px dashed var(--color-borde);
+    color: var(--color-texto-secundario);
+}
+
+.etiqueta-estado--pendiente {
+    background: transparent;
+    border: 1px solid var(--color-alerta);
+    color: var(--color-alerta);
 }
 
 .tarjeta-rutina__info {
@@ -141,7 +190,12 @@
     display: flex;
     gap: var(--espacio-sm);
     align-items: center;
+    flex-wrap: wrap;
 }
+
+/* ==========================================================================
+   BREAKPOINTS — Tablet / Escritorio
+   ========================================================================== */
 
 @media (min-width: 640px) {
     .lista-rutinas {
@@ -154,5 +208,27 @@
 @media (min-width: 1000px) {
     .lista-rutinas {
         grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 380px) {
+    .tarjeta-rutina {
+        padding: 0.9rem;
+    }
+
+    .icono-rutina,
+    .insignia-dia {
+        width: 40px;
+        height: 40px;
+        font-size: 1.25rem;
+    }
+
+    .tarjeta-rutina__info h3 {
+        font-size: 0.85rem;
+    }
+
+    .etiqueta-estado {
+        font-size: 0.62rem;
+        padding: 3px 8px;
     }
 }
