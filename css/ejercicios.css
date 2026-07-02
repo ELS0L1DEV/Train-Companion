@@ -1,9 +1,3 @@
-/* ==========================================================================
-   EJERCICIOS.HTML — Estilos específicos del directorio de ejercicios
-   Reutiliza .lista-ejercicios y .item-ejercicio definidos en style.css;
-   aquí solo se ajusta el espaciado entre secciones agrupadas por día.
-   ========================================================================== */
-
 #ejercicios-lunes,
 #ejercicios-diarios {
     margin-bottom: var(--espacio-md);

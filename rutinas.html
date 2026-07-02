@@ -65,7 +65,7 @@
             </div>
 
             <ul class="lista-rutinas" id="lista-rutinas-contenedor">
-                <li class="tarjeta-rutina tarjeta-rutina--activa">
+                <li class="tarjeta-rutina tarjeta-rutina--activa" data-rutina-id="lunes">
                     <div class="tarjeta-rutina__encabezado">
                         <span class="insignia-dia" aria-hidden="true">LU</span>
                         <div class="tarjeta-rutina__info">
@@ -77,11 +77,11 @@
                     <p class="tarjeta-rutina__meta">Último registro: hace 2 días</p>
                     <div class="tarjeta-rutina__acciones">
                         <button class="btn-principal btn-principal--compacto">Iniciar</button>
-                        <button class="btn-texto">Ver detalle</button>
+                        <button class="btn-texto btn-ver-detalle">Ver detalle</button>
                     </div>
                 </li>
 
-                <li class="tarjeta-rutina">
+                <li class="tarjeta-rutina" data-rutina-id="martes">
                     <div class="tarjeta-rutina__encabezado">
                         <span class="insignia-dia" aria-hidden="true">MA</span>
                         <div class="tarjeta-rutina__info">
@@ -93,7 +93,7 @@
                     <p class="tarjeta-rutina__meta">Último registro: hace 6 días</p>
                     <div class="tarjeta-rutina__acciones">
                         <button class="btn-principal btn-principal--compacto">Iniciar</button>
-                        <button class="btn-texto">Ver detalle</button>
+                        <button class="btn-texto btn-ver-detalle">Ver detalle</button>
                     </div>
                 </li>
 
@@ -172,6 +172,16 @@
                     <button type="submit" class="btn-principal btn-principal--compacto">Guardar rutina</button>
                 </div>
             </form>
+        </div>
+    </div>
+
+    <div id="modal-detalle-rutina" class="modal-overlay" hidden>
+        <div class="modal-tarjeta modal-tarjeta--detalle" role="dialog" aria-modal="true" aria-labelledby="modal-titulo-detalle-rutina">
+            <h2 id="modal-titulo-detalle-rutina">Detalle de la rutina</h2>
+            <ul id="lista-detalle-ejercicios" class="lista-detalle-ejercicios"></ul>
+            <div class="modal-acciones">
+                <button type="button" id="btn-cerrar-detalle" class="btn-principal btn-principal--compacto">Cerrar</button>
+            </div>
         </div>
     </div>
 
