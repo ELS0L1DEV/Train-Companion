@@ -19,14 +19,14 @@ function inicializarTextoGrande() {
     if (preferenciaGuardada) {
         document.documentElement.classList.add("texto-grande");
     }
-
+//boton del menu principal que alterna el texto grande con el normal
     boton.addEventListener("click", () => {
         const activo = document.documentElement.classList.toggle("texto-grande");
         localStorage.setItem("tc-texto-grande", activo);
         boton.setAttribute("aria-pressed", activo);
     });
 }
-
+//funcion que como su propio nombre lo dice, es para inicializar el boton para que la voz lea todo el texto
 function inicializarLecturaVoz() {
     const boton = document.getElementById("btn-leer-voz");
     if (!boton) return;
