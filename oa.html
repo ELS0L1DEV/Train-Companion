@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Cronograma Train Companion</title>
+<style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: #ffffff;
+        margin: 20px;
+    }
+    table {
+        border-collapse: collapse;
+        width: 100%;
+        max-width: 1200px;
+        font-size: 11px;
+    }
+    th, td {
+        border: 1px solid #e0e0e0;
+        text-align: center;
+        white-space: nowrap;
+        height: 24px;
+    }
+    /* Estilos del encabezado principal */
+    .header-main th {
+        background-color: #117855;
+        color: white;
+        font-weight: bold;
+        padding: 6px 10px;
+    }
+    /* Estilos del área del calendario */
+    .cal-header {
+        background-color: #f8f9f9;
+        color: #333;
+        font-weight: bold;
+        width: 18px;
+        min-width: 18px;
+        font-size: 10px;
+        padding: 2px 0;
+    }
+    .cal-day {
+        background-color: #fdfefe;
+        color: #117855;
+        font-weight: bold;
+        font-size: 9px;
+    }
+    /* Fila de fase */
+    .fase-row td {
+        background-color: #f2f3f4;
+        font-weight: bold;
+        text-align: left;
+        padding-left: 10px;
+        font-size: 12px;
+    }
+    /* Celdas de información izquierda */
+    .info-cell {
+        text-align: left;
+        padding-left: 10px;
+        font-weight: 600;
+        color: #333;
+    }
+    .badge {
+        background-color: #e8f8f5;
+        color: #00b050;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-weight: bold;
+    }
+    .row-alt {
+        background-color: #fafafa;
+    }
+    /* Barra del diagrama de Gantt */
+    .bar {
+        background-color: #82e0aa; /* Verde claro similar a la imagen */
+    }
+</style>
+</head>
+<body>
+
+<table>
+    <!-- Encabezados -->
+    <tr class="header-main">
+        <th style="text-align: left;">Descripción del hito</th>
+        <th>Asignado a</th>
+        <th>Progreso</th>
+        <th>Inicio</th>
+        <th>Días</th>
+        <!-- Días del calendario (29 columnas) -->
+        <th class="cal-header">13</th><th class="cal-header">14</th><th class="cal-header">15</th><th class="cal-header">16</th><th class="cal-header">17</th><th class="cal-header">18</th><th class="cal-header">19</th><th class="cal-header">20</th><th class="cal-header">21</th><th class="cal-header">22</th><th class="cal-header">23</th><th class="cal-header">24</th><th class="cal-header">25</th><th class="cal-header">26</th><th class="cal-header">27</th><th class="cal-header">28</th><th class="cal-header">29</th><th class="cal-header">30</th><th class="cal-header">31</th><th class="cal-header">1</th><th class="cal-header">2</th><th class="cal-header">3</th><th class="cal-header">4</th><th class="cal-header">5</th><th class="cal-header">6</th><th class="cal-header">7</th><th class="cal-header">8</th><th class="cal-header">9</th><th class="cal-header">10</th>
+    </tr>
+    <tr>
+        <th colspan="5" style="border:none;"></th>
+        <!-- Días de la semana -->
+        <td class="cal-day">m</td><td class="cal-day">j</td><td class="cal-day">v</td><td class="cal-day">s</td><td class="cal-day">d</td><td class="cal-day">l</td><td class="cal-day">m</td><td class="cal-day">m</td><td class="cal-day">j</td><td class="cal-day">v</td><td class="cal-day">s</td><td class="cal-day">d</td><td class="cal-day">l</td><td class="cal-day">m</td><td class="cal-day">m</td><td class="cal-day">j</td><td class="cal-day">v</td><td class="cal-day">s</td><td class="cal-day">d</td><td class="cal-day">l</td><td class="cal-day">m</td><td class="cal-day">m</td><td class="cal-day">j</td><td class="cal-day">v</td><td class="cal-day">s</td><td class="cal-day">d</td><td class="cal-day">l</td><td class="cal-day">m</td><td class="cal-day">m</td>
+    </tr>
+
+    <!-- Fase -->
+    <tr class="fase-row">
+        <td colspan="5">Fase Única: Train Companion</td>
+        <td colspan="29"></td>
+    </tr>
+
+    <!-- Tareas -->
+    <tr>
+        <td class="info-cell">Planeación</td>
+        <td>Ambos</td>
+        <td><span class="badge">100%</span></td>
+        <td>30/04/2026</td>
+        <td>15</td>
+        <!-- Gantt: Inicia col 1, dura 15 -->
+        <td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr class="row-alt">
+        <td class="info-cell">Diseño del sistema</td>
+        <td>Esteban Maya</td>
+        <td><span class="badge">100%</span></td>
+        <td>02/05/2026</td>
+        <td>14</td>
+        <!-- Gantt: Inicia col 2, dura 14 -->
+        <td></td>
+        <td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+        <td class="info-cell">Login y registro</td>
+        <td>Logan Yáñez</td>
+        <td><span class="badge">100%</span></td>
+        <td>04/05/2026</td>
+        <td>13</td>
+        <!-- Gantt: Inicia col 3, dura 13 -->
+        <td></td><td></td>
+        <td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr class="row-alt">
+        <td class="info-cell">Rutinas y ejercicios</td>
+        <td>Esteban Maya</td>
+        <td><span class="badge">100%</span></td>
+        <td>06/05/2026</td>
+        <td>12</td>
+        <!-- Gantt: Inicia col 4, dura 12 -->
+        <td></td><td></td><td></td>
+        <td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+        <td class="info-cell">Perfil y progreso</td>
+        <td>Logan Yáñez</td>
+        <td><span class="badge">100%</span></td>
+        <td>08/05/2026</td>
+        <td>11</td>
+        <!-- Gantt: Inicia col 5, dura 11 -->
+        <td></td><td></td><td></td><td></td>
+        <td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr class="row-alt">
+        <td class="info-cell">Accesibilidad</td>
+        <td>Esteban Maya</td>
+        <td><span class="badge">100%</span></td>
+        <td>10/05/2026</td>
+        <td>10</td>
+        <!-- Gantt: Inicia col 6, dura 10 -->
+        <td></td><td></td><td></td><td></td><td></td>
+        <td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+        <td class="info-cell">Integración</td>
+        <td>Ambos</td>
+        <td><span class="badge">100%</span></td>
+        <td>12/05/2026</td>
+        <td>9</td>
+        <!-- Gantt: Inicia col 7, dura 9 -->
+        <td></td><td></td><td></td><td></td><td></td><td></td>
+        <td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr class="row-alt">
+        <td class="info-cell">Pruebas</td>
+        <td>Logan Yáñez</td>
+        <td><span class="badge">100%</span></td>
+        <td>14/05/2026</td>
+        <td>8</td>
+        <!-- Gantt: Inicia col 8, dura 8 -->
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        <td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+        <td class="info-cell">Corrección de errores</td>
+        <td>Esteban Maya</td>
+        <td><span class="badge">100%</span></td>
+        <td>16/05/2026</td>
+        <td>7</td>
+        <!-- Gantt: Inicia col 9, dura 7 -->
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        <td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr class="row-alt">
+        <td class="info-cell">Documentación y formato</td>
+        <td>Logan Yáñez</td>
+        <td><span class="badge">100%</span></td>
+        <td>18/05/2026</td>
+        <td>6</td>
+        <!-- Gantt: Inicia col 10, dura 6 -->
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        <td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+    <tr>
+        <td class="info-cell">Entrega final</td>
+        <td>Ambos</td>
+        <td><span class="badge">100%</span></td>
+        <td>20/05/2026</td>
+        <td>5</td>
+        <!-- Gantt: Inicia col 11, dura 5 -->
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+        <td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td><td class="bar"></td>
+        <td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+    </tr>
+</table>
+
+</body>
+</html>
