@@ -1,4 +1,4 @@
-
+//Este evento hace que al llamar la app todo se inicialize desde los textos y la lectura
 document.addEventListener("DOMContentLoaded", () => {
     inicializarTextoGrande();
     inicializarLecturaVoz();
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     inicializarNuevaRutina();
     inicializarRegistrosPersonales();
 });
-
+// como todo codigo de java esta funcion sirve como parteaguas para que el evento de arriba funcione, esto mejora la legibilidad
 function inicializarTextoGrande() {
     const boton = document.getElementById("btn-texto-grande");
     if (!boton) return;
