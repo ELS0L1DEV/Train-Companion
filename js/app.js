@@ -36,7 +36,9 @@ function inicializarLecturaVoz() {
         boton.setAttribute("title", "Lectura en voz alta no disponible en este navegador");
         return;
     }
-
+//evento que se usa para añadir el evento para que el narrador pueda iniciar asi como dando figura 
+//al texto, al contenido y concatenando el documento para poder leerlo y el idioma del narrador es 
+//español de mexico
     boton.addEventListener("click", () => {
         const sintesis = window.speechSynthesis;
 
